@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <h1>Restaurants</h1>
+    <div class="col-sm-4">
+      <p>Filtrer les restaurants</p>
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" class="<%= 'active' if @category.nil? %>">
+          <%= link_to "All", restaurants_path %>
+        </li>
+        <% Restaurant.categories.each do |category| %>
+          <li role="presentation" class="<%= 'active' if category == @category %>">
+            <%= link_to category, restaurants_path(category: category)  %>
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
+    <div class="col-sm-8">
+      <ul>
+        <% @restaurants.each do |restaurant| %>
+          <li>
+            <%= link_to "#{restaurant.name} - #{restaurant.category}", restaurant_path(restaurant) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
